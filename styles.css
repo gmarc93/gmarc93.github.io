@@ -1,0 +1,142 @@
+/* CSS presets ----------------------------------------------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Segoe UI,SegoeUI,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+}
+/* ----------------------------------------------------------------------------------------------- */
+
+
+/* Master grid ------------------------------------------------------------------------------------*/
+/* Grid items: header 20em, main-content auto (to expand as more cards are created), footer 10em */
+/* Grid gutters: the space between header and main, and main and footer is set to 2.5em */
+.master-grid {
+    display: grid;
+    grid-template-rows: 20em auto 10em;
+    grid-template-columns: 1fr;
+
+    gap: 2.5em;
+}
+/* ----------------------------------------------------------------------------------------------- */
+
+
+/* Master grid item #1 / Header grid ----------------------------------------------------------- */
+/* Header grid has 3 rows (height): 
+   row 1 = sun image + location, row 2 = input field, row 3 = empty header space (to give header the proper space above and below input field) */
+/* Header grid has 5 columns (width): 
+   column 1 = sun image, column 2 = degrees, column 3 = quote, column 4-5 = login*/
+.header-content {
+    display: grid;
+    grid-template-rows: 1fr .25fr 1fr;
+    grid-template-columns: 1fr 1fr 7fr 1fr 1fr;
+
+    border: dashed black;
+}
+/* ----------------------------------------------------------------------------------------------- */
+
+
+/* Positioning Header grid items inside the Header grid ------------------------------------------ */
+/* When the page size shrinks too much the wether content becomes squished. Media queries willl be used to dynamically change grid composition to scale this content better */
+.weather-content {
+    grid-column: 1 / 3;
+    border: dashed black;
+
+    /* Weather content is also a grid (this is used to align sun-image, degrees, & location) */
+    display: grid;
+    grid-template-rows: 70% 30%;
+    grid-template-columns: 50% 50%
+}
+
+.input-main {
+    grid-column: 2 / 4;
+    grid-row: 2;
+}
+
+.button-main {
+    grid-row: 2;
+    grid-column: 4;
+}
+
+.login-content {
+    grid-column: 4 / -1;
+
+    text-align: right;
+    padding-right: 5px;
+    border: dashed black;
+}
+/* ----------------------------------------------------------------------------------------------- */
+
+
+/* Aligning Weather grid items inside the Weather grid --------------------------------------------*/
+.weather-sun-image {
+    /* This is another way of aligning content */
+    /* justify-self: center;
+    align-self: center; */
+
+    text-align: center;
+    padding-top: 2em;
+    border-bottom: dashed black;
+}
+
+.weather-degrees {
+    /* This is another way of aligning content */
+    /* justify-self: center;
+    align-self: center; */
+    
+    /* I used this alignment to make dashes have the appropriate space */
+    text-align: center;
+    padding-top: 2em;
+    border-bottom: dashed black;
+    border-left: dashed black;
+}
+
+.weather-location {
+    grid-row: 2;
+    grid-column: 1 / 3;
+    justify-self: center;
+    align-self: center;
+}
+/* ----------------------------------------------------------------------------------------------- */
+
+
+/* Master grid item #2 / Main-content grid ------------------------------------------------------- */
+.main-content {
+    display: grid;
+    /* As new task cards are created, this grid will fill as many 250px cards as it can */
+    /* The task cards will also scale up in size as screen size increases */
+    grid-template-rows: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+
+    /* Any task card that is created outside of autofill, will have the same 250px size */
+    grid-auto-rows: 250px;
+
+    /* Cards will be aligned to center so there will be no awkward spaces to left-most and right-most cards */
+    align-content: center;
+    justify-content: center;
+
+    /* Task cards will have 2em of space between them */
+    gap: 2em;
+
+    /* Adds the space to the outermost sides of the task cards to give it a pleasent alignment */
+    padding: 2em;
+    border: dashed black;
+}
+/* ----------------------------------------------------------------------------------------------- */
+
+/* Task cards ------------------------------------------------------------------------------------ */
+section {
+    border: dashed black;
+}
+/* ----------------------------------------------------------------------------------------------- */
+
+/* Footer ---------------------------------------------------------------------------------------- */
+/* Footer aligns to the bottom of the page except when I expand the page to fit my vertical montitor size. I will eventually add a media query to use position: absolute */
+.footer-content {
+    border: dashed black;
+}
+/* ----------------------------------------------------------------------------------------------- */
